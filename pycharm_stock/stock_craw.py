@@ -205,7 +205,7 @@ else:
 dt_str = datetime.datetime.strftime(dt_time, '%Y%m%d')
 print('작업일자 ==> ', dt_str)
 
-# 폴더
+# 폴더 - 변경(stock_docu/yyyymmdd)
 # --------------------------------------------------------------------------------
 folder_nm = '주식_' + dt_str
 path = './' + folder_nm
