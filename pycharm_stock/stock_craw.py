@@ -13,14 +13,23 @@ import pandas as pd
 
 
 
-global path_nm
+global path_nm, upjong_lists, theme_lists , siljuk_lists
+global file_nm_1, file_nm_2, file_nm_3, file_nm_4, file_nm_5, file_nm_6, file_nm_result, file_siljuk_nm
 path_nm = ''
-global upjong_lists
 upjong_lists = []
-global theme_lists
 theme_lists = []
-global siljuk_lists
 siljuk_lists = []
+
+file_nm_1 = ''
+file_nm_2 = ''
+file_nm_3 = ''
+file_nm_4 = ''
+file_nm_5 = ''
+file_nm_6 = ''
+file_nm_result = ''
+file_siljuk_nm = ''
+
+
 
 
 url_basic = 'https://finance.naver.com'
@@ -28,7 +37,11 @@ url_basic = 'https://finance.naver.com'
 # 전종목기본정보
 def krx_stock_basic(dt_str):
     # 전종목기본정보 : 파일명만들기
-    file_nm = '전종목기본정보_' + dt_str + '.xlsx'
+    # file_nm = '전종목기본정보_' + dt_str + '.xlsx'
+    # file_nm_1 = '01_krx_stoc_basic_' + dt_str + '.xlsx'
+
+    print("*" * 80)
+    print('전종목기본정보 ==> start')
 
     # otp 데이터 가져오기
     gen_otp_url = 'http://data.krx.co.kr/comm/fileDn/GenerateOTP/generate.cmd'
@@ -61,15 +74,19 @@ def krx_stock_basic(dt_str):
     # 다운 받은 csv파일을 pandas의 read_csv 함수를 이용하여 읽어 들임.
     # read_csv 함수의 argument에 적합할 수 있도록 BytesIO함수를 이용하여 바이너 스트림 형태로
     df = pd.read_csv(BytesIO(down_csv.content), encoding='EUC-KR')
-    df.to_excel(path_nm + '/' + file_nm)
-    print('download complate ==> {}'.format(file_nm))
+    df.to_excel(path_nm + '/' + file_nm_1)
+
+    print('전종목기본정보 ==> end  : {}'.format(file_nm_1))
+    print("*"*80)
 
 
 # 전종목지정내역
 def krx_stock_jijung(dt_str):
     # 전종목지정내역 : 파일명만들기
+    # file_nm = '전종목지정내역_' + dt_str + '.xlsx'
 
-    file_nm = '전종목지정내역_' + dt_str + '.xlsx'
+    print("*" * 80)
+    print('전종목지정내역 ==> start')
 
     # otp 데이터 가져오기
     gen_otp_url = 'http://data.krx.co.kr/comm/fileDn/GenerateOTP/generate.cmd'
@@ -101,15 +118,19 @@ def krx_stock_jijung(dt_str):
     # 다운 받은 csv파일을 pandas의 read_csv 함수를 이용하여 읽어 들임.
     # read_csv 함수의 argument에 적합할 수 있도록 BytesIO함수를 이용하여 바이너 스트림 형태로
     df = pd.read_csv(BytesIO(down_csv.content), encoding='EUC-KR')
-    df.to_excel(path_nm + '/' + file_nm)
-    print('download complate ==> {}'.format(file_nm))
+    df.to_excel(path_nm + '/' + file_nm_2)
 
+    print('전종목지정내역 ==> end  : {}'.format(file_nm_2))
+    print("*" * 80)
 
 # PER/PBR/배당수익률(개별종목)
 def krx_stock_per_pbr(dt_str):
     # PER/PBR/배당수익률(개별종목) : 파일명만들기
-    # dt_str = '20220318'
-    file_nm = 'per_pbr_배당_' + dt_str + '.xlsx'
+    # file_nm = 'per_pbr_배당_' + dt_str + '.xlsx'
+
+    print("*" * 80)
+    print('PER/PBR/배당수익률(개별종목) ==> start')
+
 
     # otp 데이터 가져오기
     gen_otp_url = 'http://data.krx.co.kr/comm/fileDn/GenerateOTP/generate.cmd'
@@ -126,7 +147,7 @@ def krx_stock_per_pbr(dt_str):
         "url": "dbms/MDC/STAT/standard/MDCSTAT03501"
     }
 
-    print(query_str_params)
+    # print(query_str_params)
 
     res = requests.get(gen_otp_url, query_str_params, headers=headers)
     time.sleep(1.0)  # 1초
@@ -145,16 +166,19 @@ def krx_stock_per_pbr(dt_str):
     # 다운 받은 csv파일을 pandas의 read_csv 함수를 이용하여 읽어 들임.
     # read_csv 함수의 argument에 적합할 수 있도록 BytesIO함수를 이용하여 바이너 스트림 형태로
     df = pd.read_csv(BytesIO(down_csv.content), encoding='EUC-KR')
-    # df
-    df.to_excel(path_nm + '/' + file_nm)
-    print('download complate ==> {}'.format(file_nm))
+    df.to_excel(path_nm + '/' + file_nm_3)
+
+    print('PER/PBR/배당수익률(개별종목) ==>  end  : {}'.format(file_nm_3))
+    print("*" * 80)
 
 
 # 전종목시세 (전종목시세 [12001])
 def krx_stock_sise(dt_str):
     # 전종목시세_ : 파일명만들기  --> 화면크롤링 해야 함.
+    # file_nm = '전종목시세_' + dt_str + '.xlsx'
 
-    file_nm = '전종목시세_' + dt_str + '.xlsx'
+    print("*" * 80)
+    print('전종목시세 ==> start')
 
     # otp 데이터 가져오기
     gen_otp_url = 'http://data.krx.co.kr/comm/fileDn/GenerateOTP/generate.cmd'
@@ -190,8 +214,11 @@ def krx_stock_sise(dt_str):
     # read_csv 함수의 argument에 적합할 수 있도록 BytesIO함수를 이용하여 바이너 스트림 형태로
 
     df = pd.read_csv(BytesIO(down_csv.content), encoding='EUC-KR')
-    df.to_excel(path_nm + '/' + file_nm)
-    print('download complate ==> {}'.format(file_nm))
+    df.to_excel(path_nm + '/' + file_nm_4)
+
+    print('전종목시세 ==>  end  : {}'.format(file_nm_4))
+    print("*" * 80)
+
 
 # upjong detail
 def get_upjong_detail(idx, url, upjongNm):
@@ -210,8 +237,13 @@ def get_upjong_detail(idx, url, upjongNm):
 
 # (기준정보)업종별 시세
 def upjong_sise(dt_str):
-    file_nm = '업종상세_' + dt_str + '.xlsx'
-    file_json_temp = '업종상세.json'
+    # file_nm = '업종상세_' + dt_str + '.xlsx'
+    # file_json_temp = '업종상세.json'
+
+    print("*" * 80)
+    print('업종별 시세 ==> start')
+
+    file_json_temp = 'upjong_detail.json'
 
     url = 'https://finance.naver.com/sise/sise_group.naver?type=upjong'
     headers = {
@@ -238,8 +270,11 @@ def upjong_sise(dt_str):
 
     # print(json_data)
     df_upjong = pd.json_normalize(json_data)
-    df_upjong.to_excel(path_nm + '/' + file_nm)
-    print('upjong complate ==> {}'.format(file_nm))
+    df_upjong.to_excel(path_nm + '/' + file_nm_5)
+
+    print('업종별 시세 ==> end  : {}'.format(file_nm_5))
+    print("*" * 80)
+
 
 # 테마 detail
 def get_theme_detail(idx, url, themeNm):
@@ -257,8 +292,13 @@ def get_theme_detail(idx, url, themeNm):
 
 # (기준정보)테마
 def theme_sise(dt_str):
-    file_theme_nm = '테마_' + dt_str + '.xlsx'
-    file_json_theme_temp = '테마.json'
+    # file_theme_nm = '테마_' + dt_str + '.xlsx'
+    # file_json_theme_temp = '테마.json'
+
+    print("*" * 80)
+    print('테마 시세 ==> start')
+
+    file_json_theme_temp = 'theme_detail.json'
     # 1~7 page
     for i in range(1, 8):
         url = 'https://finance.naver.com/sise/theme.naver?&page={}'.format(i)
@@ -286,13 +326,19 @@ def theme_sise(dt_str):
 
     # print(json_data)
     df_theme = pd.json_normalize(json_data)
-    df_theme.to_excel(path_nm + '/' + file_theme_nm)
-    print('theme complate ==> {}'.format(file_theme_nm))
+    df_theme.to_excel(path_nm + '/' + file_nm_6)
+
+    print('테마 시세 ==> end  : {}'.format(file_nm_6))
+    print("*" * 80)
 
 # 파일합치기
 def get_sum_file(dt_str):
+
+    print("*" * 80)
+    print('파일 합치기 ==> start')
+
     # 전종목기본정보_20220320.xlsx
-    file_nm_1 = '전종목기본정보_' + dt_str + '.xlsx'
+    # file_nm_1 = '전종목기본정보_' + dt_str + '.xlsx'
     df1 = pd.read_excel(path_nm + '/' + file_nm_1, index_col=0)
     # 칼럼변경 (단축코드->종목코드)
     df1.rename(columns={"단축코드": "종목코드"}, inplace=True)
@@ -305,7 +351,7 @@ def get_sum_file(dt_str):
     # 전종목지정내역_20220320.csv
     # file_nm_2 = '전종목지정내역_'+dt_str+'.csv'
     # df2 = pd.read_csv(file_nm_2, encoding='cp949')
-    file_nm_2 = '전종목지정내역_'+dt_str+'.xlsx'
+    # file_nm_2 = '전종목지정내역_'+dt_str+'.xlsx'
     df2 = pd.read_excel(path_nm + '/' + file_nm_2)
     # 칼럼삭제 (표준코드)
     # df2.drop(['종목명','Unnamed: 0'], axis='columns', inplace=True) # 칼럼단위 삭제
@@ -317,7 +363,7 @@ def get_sum_file(dt_str):
     # per_pbr_배당_20220320.csv
     # file_nm_3 = 'per_pbr_배당_'+dt_str+'.csv'
     # df3 = pd.read_csv(file_nm_3, encoding='cp949')
-    file_nm_3 = 'per_pbr_배당_'+dt_str+'.xlsx'
+    # file_nm_3 = 'per_pbr_배당_'+dt_str+'.xlsx'
     df3 = pd.read_excel(path_nm+'/'+ file_nm_3)
     # 칼럼삭제 (표준코드)
     # df3.drop(['종목명', 'Unnamed: 0'], axis='columns', inplace=True) # 칼럼단위 삭제
@@ -327,9 +373,9 @@ def get_sum_file(dt_str):
     # print(df3.head(10))
 
     # 업종상세_20220321.xlsx
-    file_nm_4 = '업종상세_'+dt_str+'.xlsx'
-    df4 = pd.read_excel(path_nm+'/'+ file_nm_4 ,usecols="B,D")
-    # df4 = pd.read_excel(file_nm_4 )
+    # file_nm_5 = '업종상세_'+dt_str+'.xlsx'
+    df4 = pd.read_excel(path_nm+'/'+ file_nm_5 ,usecols="B,D")
+    # df4 = pd.read_excel(file_nm_5 )
     # 칼럼변경 (단축코드->종목코드)
     # df4.rename(columns={"종목코드":"종목코드1"}, inplace=True)
     df4.T.drop_duplicates().T
@@ -339,8 +385,8 @@ def get_sum_file(dt_str):
     # print(df4.head(10))
 
     # 테마_20220321.xlsx
-    file_nm_5 = '테마_'+dt_str+'.xlsx'
-    df5 = pd.read_excel(path_nm+'/'+ file_nm_5 ,usecols="B,C,D", dtype={'종목코드':str})
+    # file_nm_6 = '테마_'+dt_str+'.xlsx'
+    df5 = pd.read_excel(path_nm+'/'+ file_nm_6 ,usecols="B,C,D", dtype={'종목코드':str})
 
     # df5 = df5.groupby(['종목코드','종목명'])['테마'].apply(', '.join).reset_index()
     df5 = df5.groupby(['종목코드'])['테마'].apply(', '.join).reset_index()
@@ -349,8 +395,6 @@ def get_sum_file(dt_str):
     # print(df5.head())
 
     # 저장파일명
-    file_nm_result = '주식전체_'+dt_str+'.xlsx'
-    # result_df = pd.concat([df1, df2, df3, df4], axis=1) # axis=1 좌우로 이어 붙여보기
     result_df = pd.concat([df1, df2, df3, df4, df5], axis=1) # axis=1 좌우로 이어 붙여보기
     result_df.drop(['Unnamed: 0'], axis='columns', inplace=True) # 칼럼단위 삭제
     # 한글 종목약명이 null인 index 찾기
@@ -360,11 +404,12 @@ def get_sum_file(dt_str):
     result_df.reset_index(drop=False, inplace=True)
 
     result_df['조회항목'] = result_df['종목코드'] +' '+result_df['한글 종목약명']
-    # result_df.head()
     # 엑셀저장
     result_df.to_excel(path_nm+'/'+ file_nm_result, sheet_name='total', na_rep='')
-    print("파일생성 ==> {}",format(file_nm_result))
-    # print(result_df.head())
+
+    print('파일 합치기 ==> end  : {}'.format(file_nm_result))
+    print("*" * 80)
+
 
 # 실적상세 가져오기 - naver
 def siljuk_def(code, code_nm):
@@ -440,7 +485,6 @@ def siljuk_def(code, code_nm):
         for a_value in sub_siljuk:
             sub_value = a_value.get_text().strip()
             title_values.append(sub_value)
-            # print('111')
 
         siljuk_lists.append(title_values)
     # ---------------------------------------------------------------------
@@ -448,10 +492,14 @@ def siljuk_def(code, code_nm):
 
 # 실적(재무제표 가져오기)
 def get_siljuk(dt_str):
-    file_siljuk_nm = '실적_' + dt_str + '.csv'
+    # file_siljuk_nm = '실적_' + dt_str + '.csv'
+
+    print("*" * 80)
+    print('실적(재무제표 가져오기) ==> start')
+
 
     # 전종목기본정보_20220320.xlsx
-    file_nm_1 = '전종목기본정보_' + dt_str + '.xlsx'
+    # file_nm_1 = '전종목기본정보_' + dt_str + '.xlsx'
     df1 = pd.read_excel(path_nm + '/' + file_nm_1, index_col=0, dtype={'단축코드': str})
     # 칼럼변경 (단축코드->종목코드)
     df1.rename(columns={"단축코드": "종목코드"}, inplace=True)
@@ -461,7 +509,7 @@ def get_siljuk(dt_str):
     for index, row in df1.iterrows():
         code = row[0]
         code_nm = row[1]
-        print(index, row[0], row[1])
+        # print(index, row[0], row[1])
         siljuk_def(code, code_nm)
 
     print('siljuk sub complete')
@@ -477,15 +525,17 @@ def get_siljuk(dt_str):
 
             f.write(data_l + '\n')
 
-    print('siljuk file save complete ==> {}'.format(file_siljuk_nm))
-
-
-
-
+    print('실적(재무제표 가져오기) ==> end  : {}'.format(file_siljuk_nm))
+    print("*" * 80)
 
 # ################################################################################
 # 프로그램시작
 # ################################################################################
+
+print("################################################################################");
+print("주식기본정보 가져오기")
+print("################################################################################");
+
 #  기초정보
 # --------------------------------------------------------------------------------
 # 0은 월요일, 1은 화요일, 2는 수요일, 3은 목요일, 4는 금요일 ,5는 토요일 ,6은 일요일
@@ -498,7 +548,10 @@ else:
     dt_time = datetime.datetime.now()
 
 dt_str = datetime.datetime.strftime(dt_time, '%Y%m%d')
+
+print("*"*80)
 print('작업일자 ==> ', dt_str)
+print("*"*80)
 
 # 폴더 - 변경(stock_docu/yyyymmdd)
 # --------------------------------------------------------------------------------
@@ -506,34 +559,59 @@ folder_nm = '주식_' + dt_str
 path_nm = '../../../stock_docu/' + folder_nm
 if os.path.isdir(path_nm) == False : os.mkdir(path_nm)
 
+
+print("파일명")
+print("*"*80)
+file_nm_1 = '01_krx_stoc_basic_' + dt_str + '.xlsx'
+file_nm_2 = '02_krx_stock_jijung_' + dt_str + '.xlsx'
+file_nm_3 = '03_krx_stock_per_pbr_' + dt_str + '.xlsx'
+file_nm_4 = '04_krx_stock_sise_' + dt_str + '.xlsx'
+file_nm_5 = '05_upjong_sise_' + dt_str + '.xlsx'
+file_nm_6 = '06_theme_sise_' + dt_str + '.xlsx'
+file_nm_result = '00_total_' + dt_str + '.xlsx'
+file_siljuk_nm = '11_siljuk_nm_' + dt_str + '.csv'
+
+print("전종목기본정보      : file_nm_1 ==> {}".format(file_nm_1))
+print("전종목지정내역      : file_nm_2 ==> {}".format(file_nm_2))
+print("PER/PBR/배당수익률  : file_nm_3 ==> {}".format(file_nm_3))
+print("전종목시세          : file_nm_4 ==> {}".format(file_nm_4))
+print("업종별 시세         : file_nm_5 ==> {}".format(file_nm_5))
+print("테마   시세         : file_nm_6 ==> {}".format(file_nm_6))
+print("최종파일            : file_nm_result ==> {}".format(file_nm_result))
+print("실적파일            : file_siljuk_nm ==> {}".format(file_siljuk_nm))
+
+print("*"*80)
+
+
+
 # --------------------------------------------------------------------------------
 # 함수호출
 # --------------------------------------------------------------------------------
 
 print("start")
-# # 전종목기본정보 (전종목기본정보 [12005])
-# krx_stock_basic(dt_str)
-#
-# # 전종목지정내역(전종목지정내역[12006])
-# krx_stock_jijung(dt_str)
-#
-# # PER/PBR/배당수익률(개별종목)(PER/PBR/배당수익률(개별종목) [12021])
-# krx_stock_per_pbr(dt_str)
-#
-# # 전종목시세 (전종목시세 [12001])
-# krx_stock_sise(dt_str)
-#
-# # (기준정보)업종별 시세
-# upjong_sise(dt_str)
-#
-# # (기준정보)테마
-# theme_sise(dt_str)
-#
-# # 파일합치기
-# get_sum_file(dt_str)
+# 전종목기본정보 (전종목기본정보 [12005])
+krx_stock_basic(dt_str)
+
+# 전종목지정내역(전종목지정내역[12006])
+krx_stock_jijung(dt_str)
+
+# PER/PBR/배당수익률(개별종목)(PER/PBR/배당수익률(개별종목) [12021])
+krx_stock_per_pbr(dt_str)
+
+# 전종목시세 (전종목시세 [12001])
+krx_stock_sise(dt_str)
+
+# (기준정보)업종별 시세
+upjong_sise(dt_str)
+
+# (기준정보)테마
+theme_sise(dt_str)
+
+# 파일합치기
+get_sum_file(dt_str)
 
 # 실적(재무제표 가져오기) - 1달에 한번 실행 (매월 1일)
-# get_siljuk(dt_str)
+get_siljuk(dt_str)
 
 
 
