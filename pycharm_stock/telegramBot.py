@@ -2,9 +2,9 @@
 # conda install -c conda-forge python-telegram-bot
 
 import telegram
-import telegramToken as tToken
+import jackToken as tToken
 
-my_token = tToken.my_token
+my_token = tToken.telegram_my_token
 bot = telegram.Bot(token=my_token)  # bot 선언
 updates = bot.getUpdates()  # update 내역을 받아옴
 print(updates)
