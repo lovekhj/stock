@@ -1,0 +1,1 @@
+interstItemList =["005930"]
