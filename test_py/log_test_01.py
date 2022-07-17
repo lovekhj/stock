@@ -27,23 +27,39 @@ import json
 # 참고 : https://www.daleseo.com/python-json/
 # loads() 함수: JSON 문자열을 Python 객체로 변환
 # dumps() 함수: Python 객체를 JSON 문자열로 변환
+#
+
+# # ******************************************************************
+# # 파일읽기
+# # ******************************************************************
+#
+# file_name = 'log_test_01.log'
+# file = open(file_name, 'r')
+# data = []
+# order = ['date', 'url', 'type', 'message']
+#
+# for line in file.readlines():
+#     details = line.split('|')
+#     # for 문으로 데이터 만들기
+#     details = [x.strip() for x in details]
+#     # map함수로 structure만들기
+#     structure = {key: value for key, value in zip(order, details)}
+#     data.append(structure)
+#     # print(structure)
+#
+# print(data)
+# # for entry in data:
+# #     print(json.dumps(entry, indent='4'))
 
 
-file_name = 'log_test_01.log'
-file = open(file_name, 'r')
-data = []
-order = ['date','url','type','message']
-
-for line in file.readlines():
-    details = line.split('|')
-    # for 문으로 데이터 만들기
-    details = [x.strip() for x in details]
-    # map함수로 structure만들기
-    structure = {key:value for key, value in zip(order, details)}
-    data.append(structure)
-    # print(structure)
-
-for entry in data:
-    print(json.dumps(entry, indent=4))
+# # ******************************************************************
+# # 파일읽기
+# # ******************************************************************
+# import os
+# file_nm = r'C\mintit~~~~ '
+# with open(file_nm, 'r', endcoding='UTF-8') as f:
+#     lines = f.readlines()
+#     for line lines:
+#         print(line)
 
 
