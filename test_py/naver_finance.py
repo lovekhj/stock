@@ -22,7 +22,10 @@ import os
 # xattr -d com.apple.quarantine chromedriver
 
 # windows
-browser = webdriver.Chrome()
+# browser = webdriver.Chrome()
+
+# mac
+browser = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver')
 
 # browser.maximize_window()
 
