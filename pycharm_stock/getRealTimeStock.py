@@ -39,7 +39,7 @@ def get_stock_realTime(stock_id, stock_nm):
                                                                   , stock_price_chai_1, stock_price_chai
                                                                   , stock_price_chai_2, stock_price_chai_rate)
     print(stock_all)
-    # tb.send_telegram_bot(stock_all)
+    tb.send_telegram_bot(stock_all)
     time.sleep(1)
 
 stockLists = iITEM.interstItemList
