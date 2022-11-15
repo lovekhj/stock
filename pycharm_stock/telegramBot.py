@@ -12,7 +12,7 @@ def send_telegram_bot(send_msg):
 
     bot.sendMessage(chat_id=tToken.telegram_chat_id, text = send_msg)
 
-    print('telegram bot')
+    # print('telegram bot')
 
 if __name__ == "__main__":
     send_telegram_bot("telegrambot main test")
