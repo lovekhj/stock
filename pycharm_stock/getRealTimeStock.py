@@ -46,7 +46,7 @@ stockLists = iITEM.interstItemList
 for idx, stockList in enumerate(stockLists):
     stock_id = stockList.split(',')[0]
     stock_nm = stockList.split(',')[1]
-    # print(idx, stock_id, stock_nm)
+    # printnt(idx, stock_id, stock_nm)
     get_stock_realTime(stock_id, stock_nm)
 
 # url = 'https://finance.naver.com/item/main.naver?code=005930'
