@@ -4,6 +4,7 @@ import lxml
 import interestItem as iITEM
 import telegramBot as tb
 import time
+import sys
 
 
 # 실시간 증권검색
@@ -39,6 +40,7 @@ def get_stock_realTime(stock_id, stock_nm):
                                                                   , stock_price_chai_1, stock_price_chai
                                                                   , stock_price_chai_2, stock_price_chai_rate)
     print(stock_all)
+    sys.stdout.flush()
     tb.send_telegram_bot(stock_all)
     time.sleep(1)
 

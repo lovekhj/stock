@@ -5,7 +5,7 @@ import telegram
 import jackToken as tToken
 
 def send_telegram_bot(send_msg):
-    print('telegrambot : ' , send_msg)
+    # print('telegrambot : ' , send_msg)
 
     my_token = tToken.telegram_my_token
     bot = telegram.Bot(token=my_token)  # bot 선언
