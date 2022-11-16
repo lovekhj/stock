@@ -9,6 +9,10 @@ import sys
 
 # 실시간 증권검색
 
+global send_sms_list, send_sms
+send_sms_list = []
+send_sms = ''
+
 def get_stock_realTime(stock_id, stock_nm):
     url = 'https://finance.naver.com/item/main.naver?code={}'.format(stock_id)
     headers = {
@@ -35,21 +39,32 @@ def get_stock_realTime(stock_id, stock_nm):
 
     # print(stock_price_chai)
 
-    stock_all = "{}({}) 현재가({}) 전일가({}) 차이({} {}원)({}{})".format(stock_id, stock_nm, stock_price
+    stock_all = "{}({})현재:{},전일:{},({}:{})({}{})".format(stock_id, stock_nm, stock_price
                                                                   , stock_price_yesterday
                                                                   , stock_price_chai_1, stock_price_chai
                                                                   , stock_price_chai_2, stock_price_chai_rate)
-    print(stock_all)
-    sys.stdout.flush()
-    tb.send_telegram_bot(stock_all)
-    time.sleep(1)
+    # stock_all = "{}({}) 현재가({}) 전일가({}) 차이({} {}원)({}{})".format(stock_id, stock_nm, stock_price
+    #                                                               , stock_price_yesterday
+    #                                                               , stock_price_chai_1, stock_price_chai
+    #                                                               , stock_price_chai_2, stock_price_chai_rate)
+    # print(stock_all)
+
+    # sys.stdout.flush()
+    # tb.send_telegram_bot(stock_all)
+    # time.sleep(1)
+    return stock_all
+
 
 stockLists = iITEM.interstItemList
 for idx, stockList in enumerate(stockLists):
     stock_id = stockList.split(',')[0]
     stock_nm = stockList.split(',')[1]
     # printnt(idx, stock_id, stock_nm)
-    get_stock_realTime(stock_id, stock_nm)
+    send_sms = send_sms + get_stock_realTime(stock_id, stock_nm) + '\n'
+
+print(send_sms)
+tb.send_telegram_bot(send_sms)
+
 
 # url = 'https://finance.naver.com/item/main.naver?code=005930'
 # url = 'https://finance.naver.com/item/main.naver?code=000660'
