@@ -16,4 +16,3 @@ def send_telegram_bot(send_msg):
 
 if __name__ == "__main__":
     send_telegram_bot("telegrambot main test")
-
