@@ -587,25 +587,25 @@ print("start")
 # 전종목기본정보 (전종목기본정보 [12005])
 krx_stock_basic(dt_str)
 
-# 전종목지정내역(전종목지정내역[12006])
-krx_stock_jijung(dt_str)
-
-# PER/PBR/배당수익률(개별종목)(PER/PBR/배당수익률(개별종목) [12021])
-krx_stock_per_pbr(dt_str)
-
-# 전종목시세 (전종목시세 [12001])
-krx_stock_sise(dt_str)
-
-# (기준정보)업종별 시세
-upjong_sise(dt_str)
-
-# (기준정보)테마
-theme_sise(dt_str)
-
-# 파일합치기
-get_sum_file(dt_str)
-
-# 실적(재무제표 가져오기) - 1달에 한번 실행 (매월 1일)
-# get_siljuk(dt_str)
+# # 전종목지정내역(전종목지정내역[12006])
+# krx_stock_jijung(dt_str)
+#
+# # PER/PBR/배당수익률(개별종목)(PER/PBR/배당수익률(개별종목) [12021])
+# krx_stock_per_pbr(dt_str)
+#
+# # 전종목시세 (전종목시세 [12001])
+# krx_stock_sise(dt_str)
+#
+# # (기준정보)업종별 시세
+# upjong_sise(dt_str)
+#
+# # (기준정보)테마
+# theme_sise(dt_str)
+#
+# # 파일합치기
+# get_sum_file(dt_str)
+#
+# # 실적(재무제표 가져오기) - 1달에 한번 실행 (매월 1일)
+# # get_siljuk(dt_str)
 
 print("end")
