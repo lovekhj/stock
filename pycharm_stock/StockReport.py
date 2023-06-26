@@ -68,10 +68,10 @@ def krx_exec():
     otpUrl2 = "dbms/MDC/STAT/standard/MDCSTAT02001"
 
     # # krx 전종목기본정보 가져오기
-    # krx_12005("krx_12005(전종목기본정보)", file_nm_1, otpUrl1)
+    krx_12005("krx_12005(전종목기본정보)", file_nm_1, otpUrl1)
     #
     # # krx 전종목지정내역
-    # krx_12006("krx_12006(전전종목지정내역)", file_nm_2, otpUrl2)
+    krx_12006("krx_12006(전전종목지정내역)", file_nm_2, otpUrl2)
 
 
 # ----------------------------------------------------------------------------
